@@ -1,6 +1,4 @@
-fs            = require 'fs'
-path          = require 'path'
-{spawn, exec} = require 'child_process'
+{spawn} = require 'child_process'
 {print}       = require 'util'
 
 run = (cmd, args, cb) ->
