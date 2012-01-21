@@ -14,5 +14,5 @@ task 'compile', ->
     process.exit(status)
 
 task 'spec', ->
-  run './specs.sh', ['spec'], (status) ->
+  run 'jasmine-node', ['spec', '--coffee', '--junitreport', '--noColor'], (status) ->
     process.exit(status)
