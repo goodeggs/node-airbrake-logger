@@ -1,6 +1,6 @@
 {
   "name"            : "node-airbrake-logger"
-, "version"         : "0.0.1"
+, "version"         : "0.0.2"
 , "description"     : "A simple logger for node.js apps backed by http://airbrake.io/"
 , "homepage"        : "http://github.com/goodeggs/node-airbrake-logger"
 , "repository"      : { "type" : "git"
