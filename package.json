@@ -13,10 +13,13 @@
                       ]
 , "maintainers"     : "Bob Zoller <bob@goodeggsinc.com>"
 , "licenses"        : ["MIT"]
-, "dependencies"    : { "airbrake": "0.2.4"
+, "dependencies"    : { "airbrake": "0.2.x"
                       }
-, "devDependencies" : { "jasmine-node" : "1.0.17"
-                      , "coffee-script": "1.1.3"
+, "devDependencies" : { "jasmine-node" : "1.0.x"
+                      , "coffee-script": "1.1.x"
                       }
 , "main"            : "lib/logger"
+, "scripts"         : { "pretest" : "coffee -cbl -o lib src"
+                      , "test" : "jasmine-node --coffee --junitreport spec"
+                      }
 }
