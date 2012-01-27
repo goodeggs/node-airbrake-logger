@@ -3,7 +3,7 @@ airbrake = require 'airbrake'
 maybeLogErrorRemotely = (e) ->
   return unless logger.remote
   logger.client.notify e, (error, url) ->
-    logger.console.error(error) if error?
+    logger.console.error('Error logging remotely', error?.stack or error) if error?
 
 logErrorLocally = (e) ->
   msg = ""
@@ -58,5 +58,5 @@ logger = module.exports =
     err.url = req.url
     err.params = req.params
     logger.error('uncaught express exception', err)
-    next()
+    next(err) # After logging, let subsequent error handlers take care of it.
 

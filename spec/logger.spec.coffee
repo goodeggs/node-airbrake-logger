@@ -1,4 +1,4 @@
-logger = require '../src/logger'
+logger = require '../lib/logger'
 
 describe 'logger', ->
 
