@@ -16,7 +16,7 @@
 , "dependencies"    : { "airbrake": "0.2.x"
                       }
 , "devDependencies" : { "jasmine-node" : "1.0.x"
-                      , "coffee-script": "1.1.x"
+                      , "coffee-script": "1.2.x"
                       }
 , "main"            : "lib/logger"
 , "scripts"         : { "pretest" : "coffee -cbl -o lib src"
