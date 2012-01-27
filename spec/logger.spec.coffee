@@ -3,8 +3,8 @@ logger = require '../lib/logger'
 describe 'logger', ->
 
   fakeConsole =
-    error: -> throw 'stub me'
-    log: -> throw 'stub me'
+    error: -> throw 'stub fakceConsole.error'
+    log: -> throw 'stub fakeConsole.log'
 
   describe 'with default settings', ->
 
@@ -60,6 +60,22 @@ describe 'logger', ->
         expect(cgiVars['SENDGRID_PASSWORD']).toEqual '[HIDDEN]'
         expect(cgiVars['SOMEOTHERPASSWORD']).toEqual '[HIDDEN]'
 
+    describe 'middleware', ->
+      it 'places request headers in position to be picked up by the client', ->
+        req = {}
+        req.headers = {}
+        req.headers.accept = 'text/html'
+
+        err = new Error('the error message')
+
+        next = jasmine.createSpy()
+        spyOn(fakeConsole, 'error')
+
+        logger.middleware(err, req, {}, next)
+        
+        expect(next).toHaveBeenCalledWith(err)
+
+        expect(err['request.header.accept']).toEqual 'text/html'
 
   describe 'with remote: false', ->
 
