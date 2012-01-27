@@ -77,6 +77,33 @@ describe 'logger', ->
 
         expect(err['request.header.accept']).toEqual 'text/html'
 
+      it 'places includes body params, query params, and route params', ->
+        req = {}
+        req.headers = {}
+        req.headers.accept = 'text/html'
+        req.params = order: 'somelongorderid'
+        req.body = someKey: {nestedKey: 'somevalue'}
+        req.query = queryParam: 'queryValue'
+
+        err = new Error('the error message')
+
+        next = jasmine.createSpy()
+        spyOn(fakeConsole, 'error')
+
+        logger.middleware(err, req, {}, next)
+
+        expect(next).toHaveBeenCalledWith(err)
+
+        expect(err.params).toEqual
+          params:
+            order: 'somelongorderid'
+          query:
+            queryParam: 'queryValue'
+          body:
+            someKey:
+              nestedKey: 'somevalue'
+          context: 'uncaught express exception'
+
   describe 'with remote: false', ->
 
     beforeEach ->

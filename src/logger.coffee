@@ -56,7 +56,11 @@ logger = module.exports =
   
   middleware: (err, req, res, next) ->
     err.url = req.url
-    err.params = req.params
+    err.params =
+      params: req.params
+      query: req.query
+      body: req.body
+      
     for header, value of (req.headers or {})
       err["request.header.#{header}"] = value
     logger.error('uncaught express exception', err)
