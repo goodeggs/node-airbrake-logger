@@ -28,7 +28,7 @@ logger = module.exports =
   configure: (opts) ->
     logger.console = opts.console ? console
     logger.remote = opts.remote ? true
-    logger.client = airbrake.createClient(opts.airbrakeKey)
+    logger.client = airbrake.createClient(opts.airbrakeKey, opts.env)
     
     logger.client.cgiDataVars = ->
       vars = this.constructor.prototype.cgiDataVars.apply(this, arguments) # Call super
